@@ -64,4 +64,4 @@ async def get_products(current_user: str=Depends(get_current_user)):
         return response.json()
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", reload=True)
+    uvicorn.run("main:app", reload=True, port=8000)
