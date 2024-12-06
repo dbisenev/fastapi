@@ -28,7 +28,7 @@ app.include_router(router=auth_router, prefix=settings.api_prefix)
 @app.middleware("http")
 async def auth_middleware(request: Request, call_next):
 
-    public_routes = ["/api/v1/auth/login", "/api/v1/auth/register", "/docs", "/openapi.json"]
+    public_routes = ["/test/","/api/v1/auth/login", "/api/v1/auth/register", "/docs", "/openapi.json"]
     if request.url.path in public_routes:
         return await call_next(request)
 
@@ -57,7 +57,7 @@ async def auth_middleware(request: Request, call_next):
 
 
 @app.get("/test/")
-async def get_products(current_user: str=Depends(get_current_user)):
+async def get_products():
     async with httpx.AsyncClient() as client:
         response = await client.get(f"{BASE_URL}/products")
         response.raise_for_status()
